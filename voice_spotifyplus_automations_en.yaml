@@ -300,7 +300,7 @@
     - much louder
     - set to {volume}%
     - Volume to {volume}%
-    - full volumn
+    - full volume
     - maximum volume
     - max volume
     - turn up the volume
@@ -309,7 +309,7 @@
   actions:
   - choose:
     - conditions:
-      - '{{ ''leiser'' in trigger.sentence.lower() }}'
+      - '{{ ''quieter'' in trigger.sentence.lower() }}'
       sequence:
       - target:
           entity_id: media_player.spotifyplus_yourID
@@ -321,7 +321,7 @@
           entity_id: media_player.spotifyplus_yourID
         action: media_player.volume_down
     - conditions:
-      - '{{ ''lauter'' in trigger.sentence.lower() }}'
+      - '{{ ''louder'' in trigger.sentence.lower() }}'
       sequence:
       - target:
           entity_id: media_player.spotifyplus_yourID
@@ -333,8 +333,8 @@
           entity_id: media_player.spotifyplus_yourID
         action: media_player.volume_up
     - conditions:
-      - '{{ ''volle lautstärke'' in trigger.sentence.lower() or ''maximale lautstärke''
-        in trigger.sentence.lower() or ''dreh voll auf'' in trigger.sentence.lower()
+      - '{{ ''full volume'' in trigger.sentence.lower() or ''max volume''
+        in trigger.sentence.lower() or ''maxiumum volume'' in trigger.sentence.lower()
         }}'
       sequence:
       - target:
@@ -343,7 +343,7 @@
           volume_level: 1
         action: media_player.volume_set
     - conditions:
-      - '{{ ''lautstärke auf'' in trigger.sentence.lower() }}'
+      - '{{ ''volume to'' in trigger.sentence.lower() or ''set to''}}'
       sequence:
       - target:
           entity_id: media_player.spotifyplus_yourID
@@ -380,7 +380,7 @@
 #todo: find out what these do
   - choose:
     - conditions:
-      - '{{ ''an'' in trigger.sentence.lower() }}'
+      - '{{ ''on'' in trigger.sentence.lower() }}'
       sequence:
       - target:
           entity_id: media_player.spotifyplus_yourID
@@ -389,7 +389,7 @@
         action: media_player.shuffle_set
     - conditions:
       - condition: template
-        value_template: '{{ ''aus'' in trigger.sentence.lower() }}'
+        value_template: '{{ ''off'' in trigger.sentence.lower() }}'
       sequence:
       - target:
           entity_id: media_player.spotifyplus_yourID
@@ -398,15 +398,15 @@
         action: media_player.shuffle_set
   mode: single
 - id: '1730554056789'
-  alias: 'Voice: Spotify abspielen / Play'
+  alias: 'Voice: Spotify Play'
   description: ''
   triggers:
   - trigger: conversation
     command:
-    - Spiele Musik
-    - Starte Spotify
-    - Spiele Spotify
-    - Starte Musik
+    - Play music
+    - Play spotify
+    - start music
+    - start spotify
   conditions: []
   actions:
   - action: script.play_spotify_on_yourID_source
@@ -431,27 +431,23 @@
   triggers:
   - trigger: conversation
     command:
-    - Ich mag [dieses] [das] Lied
-    - Lied liken
-    - Gefällt mir [dieses] [das] Lied
-    - Song liken
-    - Ich mag [den] [diesen] Song
-    - Füge [den] [diesen] Song zu meinen Favoriten hinzu
-    - Speichere [den] [diesen] Song
-    - Song zu meinen Favoriten hinzufügen
-    - Speichere [dieses] [das] Lied
-    - Dieses Lied zu Favoriten hinzufügen
-    - Speichere [diesen] [den] Track
-    - Track liken
-    - Ich mag [diesen] [den] Track
-    - Track speichern
-    - Song speichern
-    - Lied speichern
-    - Song zu Favoriten hinzufügen
-    - Füge diesen Track zu meinen Favoriten hinzu
-    - Gefällt mir [dieser] [der] Song
-    - Dieses Lied speichern
-    - like [diesen] [den] Song
+    - I like this song
+    - like this song
+    - like song
+    - I really like this song
+    - add this song to my favorites
+    - favorite this song
+    - save this song
+    - save song
+    - save this song to my favorites
+    - save this track
+    - like this track
+    - like track
+    - I like this track
+    - save track
+    - add song to favorites
+    - add track to favorites
+    - add this track to my favorites
   conditions: []
   actions:
   - data:
@@ -464,10 +460,12 @@
   triggers:
   - trigger: conversation
     command:
-    - '[Musik] [Spotify] Pause'
-    - '[Musik] [Spotify] Stop'
-    - '[Mach] Spotify aus'
-    - '[Mach die] Musik aus'
+    - '[Music] [Spotify] Pause'
+    - '[Music] [Spotify] Stop'
+    - 'turn Spotify off'
+    - 'turn the music off'
+    - 'turn off music'
+    - 'turn off spotify'
   conditions: []
   actions:
   - target:
